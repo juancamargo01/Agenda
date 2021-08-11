@@ -51,7 +51,9 @@ class Login {
     this.user = await LoginModel.findOne({ email: this.body.email });
     if(this.user) this.errors.push('Usuário já existe.');
   }
-
+/**
+ * Método que valida os campos email e senha
+ */
   valida() {
     this.cleanUp();
 

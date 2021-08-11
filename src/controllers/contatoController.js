@@ -3,7 +3,12 @@ const Contato = require('../models/ContatoModel');
 exports.index = (req, res) => {
   res.render('contato',{ contato:{}});  
 };
-
+/**
+ * Método que cria um novo registro no banco de dado e atualiza nas views
+ * @param {*} req 
+ * @param {*} res 
+ * @returns 
+ */
 exports.register = async(req, res) => {
   try {
     const contato = new Contato(req.body);
@@ -23,7 +28,12 @@ exports.register = async(req, res) => {
     return res.render('404');
   }
 };
-
+/**
+ * Método que controla a busca no banco de dados 
+ * @param {*} req 
+ * @param {*} res 
+ * @returns 
+ */
 exports.editIndex = async function(req, res) {
   if(!req.params.id) return res.render('404');
 
@@ -32,7 +42,12 @@ exports.editIndex = async function(req, res) {
 
   res.render('contato', { contato });
 };
-
+/**
+ * Método que controla a edição no banco de dados e atualização nas views
+ * @param {*} req 
+ * @param {*} res 
+ * @returns 
+ */
 exports.edit= async function(req, res) {
   try{
     if(!req.params.id) return res.render('404');
@@ -56,7 +71,12 @@ exports.edit= async function(req, res) {
   
 };
 
-
+/**
+ * Método que controla o delete do banco de dados e atualização nas views
+ * @param {*} req 
+ * @param {*} res 
+ * @returns 
+ */
 exports.delete = async function(req, res) {
   if(!req.params.id) return res.render('404');
 

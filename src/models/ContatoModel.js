@@ -16,13 +16,18 @@ function Contato(body) {
   this.errors = [];
   this.contato = null;
 }
-
+/**
+ * Método que cria novo contato
+ * @returns 
+ */
 Contato.prototype.register = async function() {
   this.valida();
   if(this.errors.length > 0) return;
   this.contato = await ContatoModel.create(this.body);
 };
-
+/**
+ * Metodo de validação
+ */
 Contato.prototype.valida = function() {
   this.cleanUp();
 
@@ -34,7 +39,9 @@ Contato.prototype.valida = function() {
     this.errors.push('Pelo menos um contato precisa ser enviado: e-mail ou telefone.');
   }
 };
-
+/**
+ * Método que desconstroi o body para mostra so os dados escolhidos
+ */
 Contato.prototype.cleanUp = function() {
   for(const key in this.body) {
     if(typeof this.body[key] !== 'string') {
@@ -49,7 +56,11 @@ Contato.prototype.cleanUp = function() {
     telefone: this.body.telefone,
   };
 };
-
+/**
+ * Método que edita um contato baseado no id fornecido
+ * @param {*} id 
+ * @returns 
+ */
 Contato.prototype.edit = async function(id) {
   if(typeof id !== 'string') return;
   this.valida();
@@ -58,18 +69,31 @@ Contato.prototype.edit = async function(id) {
 };
 
 // Métodos estáticos
+/**
+ * Método qeu faz busca no banco de dado pelo id fornecido
+ * @param {*} id 
+ * @returns 
+ */
 Contato.buscaPorId = async function(id) {
   if(typeof id !== 'string') return;
   const contato = await ContatoModel.findById(id);
   return contato;
 };
 
+/**
+ * Método que busca no banco e ordena por ordem de criação
+ */
 Contato.buscaContatos = async function() {
   const contatos = await ContatoModel.find()
     .sort({ criadoEm: -1 });
   return contatos;
 };
 
+/**
+ * Método que busca contato pelo id para deletar
+ * @param {*} id 
+ * @returns 
+ */
 Contato.delete = async function(id) {
   if(typeof id !== 'string') return;
   const contato = await ContatoModel.findOneAndDelete({_id: id});
