@@ -24,7 +24,7 @@ Após executar o comando acima, basta apenas abrir o seguinte endereço e visual
 http://localhost:3000
 ```
 
-e necessario um arquivo .env para conexão com banco de dado mongoDB substitua o comando password pela senha do seu banco de dados:
+e necessario um arquivo .env para conexão com banco de dado mongoDB substitua o caminho o do seu banco de dados:
 ```
 CONNECTIONSTRING = mongodb+srv://juancamargo:<password>@cluster0.bdcgu.mongodb.net/AGENDA?retryWrites=true&w=majority
 ```
